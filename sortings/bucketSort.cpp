@@ -1,4 +1,5 @@
 #include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 
 void insertionSort( int arr[], int size ){
@@ -22,18 +23,20 @@ void insertionSort( int arr[], int size ){
 // input is from 0.0 to 0.9
 void bucketSort(float arr[], int n){
     int bucketCount[10] = {0};
-    int bucket[10][n];
+    float bucket[10][n];
 
     for( int i = 0; i < n; i++ ){
-        bucket[ int(arr[i] * 10) ][bucketCount[ int(arr[i] * 10) ]] = arr[i];
-        bucketCount[ int(arr[i] * 10) ]++;
+        int index = arr[i] * 10;
+        bucket[ index ][bucketCount[ index ]] = arr[i];
+        bucketCount[ index ]++;
     }
 
     for( int i = 0; i < 10; i++ ){
-        insertionSort( bucket[i], bucketCount[i] );
+        sort( bucket[i], bucket[i] + bucketCount[i] );
     }
 
-    int newArr[n], k = 0;
+    float newArr[n];
+    int k = 0;
     for( int i = 0; i < 10; i++ ){
         for( int j = 0; j < bucketCount[i]; j++ ){
             newArr[k++] = bucket[i][j];
@@ -46,9 +49,9 @@ void bucketSort(float arr[], int n){
 }
 
 int main(){
-    int arr[] = {41,35,22,87,15,33,27};
+    float arr[] = {0.41,0.35,0.22,0.87,0.15,0.33,0.27};
     int n = sizeof(arr) / sizeof(int);
-    insertionSort(arr, n);
+    bucketSort(arr, n);
 
     for( int i = 0; i < n; i++  ){
         cout << arr[i] << " ";
