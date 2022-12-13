@@ -5,23 +5,18 @@ void Heapify( int arr[], int n, int i ){
     int leftChild = 2*i;
     int rightChild = 2*i + 1;
 
-    if( i == 0 ){
-        leftChild = 1;
-        rightChild = 2;
-    }
-
     int largest = i;
 
-    if( leftChild < n && arr[leftChild] >= arr[i] ){
+    if( leftChild <= n && arr[leftChild-1] >= arr[i-1] ){
         largest = leftChild;
     }
 
-    if( rightChild < n && arr[rightChild] > arr[largest] ){
+    if( rightChild <= n && arr[rightChild-1] > arr[largest-1] ){
         largest = rightChild;
     }
 
     if( largest != i ){
-        swap( arr[largest], arr[i]);
+        swap( arr[largest-1], arr[i-1]);
         n--;
         Heapify(arr, n, largest );
     }
@@ -29,7 +24,7 @@ void Heapify( int arr[], int n, int i ){
 }
 
 void buildMaxHeap( int arr[], int n ){
-    for( int i = n / 2; i >= 0; i--){
+    for( int i = n / 2; i >= 1; i--){
         Heapify(arr,n,i);
     }
 }
@@ -37,15 +32,15 @@ void buildMaxHeap( int arr[], int n ){
 void heapSort(int arr[], int n){
     buildMaxHeap(arr,n);
     
-    for( int i = n - 1; n > 0; i-- ){
-        swap(arr[0],arr[i]);
+    for( int i = n; n > 1; i-- ){
+        swap(arr[0],arr[i-1]);
         n--;
-        Heapify(arr, n, 0);
+        Heapify(arr, n, 1);
     }
 }
 
 int main(){
-    int arr[] = {4,3,20,6,4,5};
+    int arr[] = {4,3,2,3,7,9,0,6,4,5};
     int size = sizeof(arr) / sizeof(int);
     heapSort( arr, size);
 

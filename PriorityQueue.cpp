@@ -3,6 +3,7 @@ using namespace std;
 
 int size = 0;
 int capacity = 50;
+
 struct node{
     int data;
     int priority;
