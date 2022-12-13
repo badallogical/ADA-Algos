@@ -2,10 +2,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void insertionSort( int arr[], int size ){
+void insertionSort( float arr[], int size ){
 
     for( int i = 1; i < size; i++ ){
-        int temp = arr[i];
+        float temp = arr[i];
         int j = i - 1;
         while( j > -1 ){
             if( arr[j] > temp ){
@@ -32,7 +32,7 @@ void bucketSort(float arr[], int n){
     }
 
     for( int i = 0; i < 10; i++ ){
-        sort( bucket[i], bucket[i] + bucketCount[i] );
+        insertionSort( bucket[i],  bucketCount[i] );
     }
 
     float newArr[n];
