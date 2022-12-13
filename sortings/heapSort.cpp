@@ -21,10 +21,8 @@ void Heapify( int arr[], int n, int i ){
     }
 
     if( largest != i ){
-        arr[i] = arr[i] + arr[largest];
-        arr[largest] = arr[i] - arr[largest];
-        arr[i] = arr[i] - arr[largest];
-
+        swap( arr[largest], arr[i]);
+        n--;
         Heapify(arr, n, largest );
     }
 
